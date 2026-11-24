@@ -10,7 +10,7 @@ for m in qwen2.5-coder:1.5b qwen2.5-coder:3b qwen3:1.7b qwen3:4b llama3.2:3b phi
       r=$(node eval.mjs --model "$m" --tasks tasks-b --prompt $p 2>&1 | grep -E "passed" | sed 's/.*): //')
       echo "$m | prompt $p | ${r:-eval failed}" >> evals/bakeoff.txt
     done
-    [ "$m" != "qwen2.5-coder:3b" ] && $OL rm "$m" >/dev/null 2>&1
+    [[ "$m" != "qwen2.5-coder:3b" ]] && $OL rm "$m" >/dev/null 2>&1
   else
     echo "$m | pull failed (not in the library?)" >> evals/bakeoff.txt
   fi
