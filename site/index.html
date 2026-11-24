@@ -50,6 +50,28 @@ main{padding:0}main header{padding:16px 22px;border-bottom:1px solid var(--line)
 .tile{background:var(--panel);border:1px solid var(--line);border-bottom:3px solid var(--c);border-radius:var(--r);padding:16px 18px}.tile small{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}.tile b{display:block;font-size:34px;font-weight:600;margin-top:6px;font-variant-numeric:tabular-nums}
 .note{font-size:12px;color:var(--faint);border:1px dashed var(--strong);border-radius:12px;padding:8px 12px;margin-bottom:16px}
 .input{border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);padding:9px 12px;font:inherit;width:100%;max-width:420px}
+/* next-cta: the one thing a visitor most likely does next (GEL guard next-cta) */
+@property --next-cta-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+.next-cta {
+  --next-cta-1: var(--accent, currentColor);
+  --next-cta-2: var(--accent-2, var(--next-cta-1));
+  --next-cta-3: var(--accent-3, var(--next-cta-2));
+  --next-cta-fill: var(--surface, Canvas);
+  border: 2px solid transparent;
+  border-radius: var(--radius, 8px);
+  background:
+    linear-gradient(var(--next-cta-fill), var(--next-cta-fill)) padding-box,
+    conic-gradient(from var(--next-cta-angle), var(--next-cta-1), var(--next-cta-2), var(--next-cta-3), var(--next-cta-1)) border-box;
+  animation: next-cta-spin 3s linear infinite;
+}
+
+@keyframes next-cta-spin { to { --next-cta-angle: 360deg; } }
+
+/* Motion off: keep the marker, stop the spin. */
+@media (prefers-reduced-motion: reduce) {
+  .next-cta { animation: none; }
+}
 </style>
 </head>
 <body>
@@ -64,8 +86,8 @@ main{padding:0}main header{padding:16px 22px;border-bottom:1px solid var(--line)
   <div class="hero">
     <div class="kicker">A small model. On purpose.</div>
     <h1>The intern, not the genius.</h1>
-    <p>Inference serves <code>flisk-wolf</code>, a small model for small jobs: read this, return that, as JSON, fast and cheap. It will not write your novel or reason about your startup. It will fix your config at 3 a.m. for a fraction of a cent.</p>
-    <button class="btn solid" data-go="keys">Get an API key</button> <a class="btn" href="#cases">See 10 jobs</a>
+    <p>This site serves <code>flisk-wolf</code>, a small model for small jobs: read this, return that, fast and cheap. It will fix your config at 3 a.m. for a fraction of a cent.</p>
+    <button class="btn solid next-cta" data-next-cta data-go="keys">Get an API key</button> <a class="btn" href="#cases">See 10 jobs</a>
   </div>
 
   <section id="why">
