@@ -10,7 +10,8 @@
     "migrations-append-only": "block",
     "north-star": "report",
     "ice-score": "report",
-    "frozen-install": "report"
+    "frozen-install": "report",
+    "curl-https-only": "report"
   },
   "status": "active",
   "owner": "@odykyi",
@@ -23,6 +24,7 @@
   "reasons": {
     "north-star": "no measured metric yet",
     "ice-score": "ROADMAP.md confidence-8 rows have no linked evidence yet; scores are the maintainers' call, not to be lowered just to pass",
-    "frozen-install": "ci.yml installs the validator of flisk-sh/flisk (checked out beside this repo), which publishes no lockfile for flisk/cli to install from"
+    "frozen-install": "ci.yml installs the validator of flisk-sh/flisk (checked out beside this repo), which publishes no lockfile for flisk/cli to install from",
+    "curl-https-only": "the four curl calls probe a local model server on http://localhost:8090, where --proto =https cannot work; the guard should exempt loopback"
   }
 }
